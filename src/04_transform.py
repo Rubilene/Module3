@@ -75,7 +75,7 @@ def build_dim_modality(ris_df: pd.DataFrame) -> pd.DataFrame:
         "Fluoroscopy":    "Fluoro",
         "Bone Density":   "Dxa",
         "Mammography":    "Mammo",
-        "Interventiona":   "IR",
+        "Interventional":   "IR",
     }
     unique = ris_df["modality_standard"].dropna().unique()
     rows = []
@@ -111,11 +111,11 @@ def build_dim_radiologist(ris_df: pd.DataFrame) -> pd.DataFrame:
 # ── T01 – Location Dimension ──────────────────────────────────────
 def build_dim_location(ris_df: pd.DataFrame) -> pd.DataFrame:
     dept_map = {
-        "ESH":     ("ESH",     "East Surrey Hospitals"),
-        "CR":    ("CR",  "Crawley Hospitals"),
-        "HR":    ("HR",  "Horsham Hospitals"),
-        "CT":     ("CT", "Caterham Hospitals"),
-        "RH": ("RH",     "Redhill CDC"),
+        "ESH":     ("East Surrey",  "Surrey and Sussex Hospital"),
+        "CR":    ("Crawley",  "Surrey and Sussex Hospital"),
+        "HR":    ("Horsham",  "Surrey and Sussex Hospital"),
+        "CT":     ("Caterham", "Surrey and Sussex Hospital"),
+        "RH": ("Redhill",     "Surrey and Sussex Hospital"),
     }
     unique = ris_df["site_code"].dropna().unique()
     rows = []
