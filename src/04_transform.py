@@ -75,7 +75,7 @@ def build_dim_modality(ris_df: pd.DataFrame) -> pd.DataFrame:
         "Fluoroscopy":    "Fluoro",
         "Bone Density":   "Dxa",
         "Mammography":    "Mammo",
-        "Interventional":   "IR",
+        "Intervention":   "IR",
     }
     unique = ris_df["modality_standard"].dropna().unique()
     rows = []
@@ -126,7 +126,7 @@ def build_dim_location(ris_df: pd.DataFrame) -> pd.DataFrame:
             "site_code":    site,
             "department":   dept,
             "trust":        trust,
-            "region":       "East Surrey",
+            "region":       "South East",
         })
     df = pd.DataFrame(rows).drop_duplicates(subset=["location_key"])
     log.info(f"  Dim_Location:    {len(df):,} rows")
