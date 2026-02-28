@@ -1,0 +1,10 @@
+modality_key,modality_code,modality_name,modality_group
+1952575393,BONE_DENSI,Bone Density,Plain Film
+270831856,CT_SCAN,CT Scan,Cross-Sectional
+3665974449,FLUOROSCOP,Fluoroscopy,Interventional
+1900595499,MRI,MRI,Cross-Sectional
+993945747,MAMMOGRAPH,Mammography,Plain Film
+2182823169,NUCLEAR_ME,Nuclear Medicine,Nuclear
+1768620816,UNKNOWN,UNKNOWN,Unclassified
+217149412,ULTRASOUND,Ultrasound,Ultrasound
+140726894,X-RAY,X-Ray,Plain Film
