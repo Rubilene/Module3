@@ -111,11 +111,11 @@ def build_dim_radiologist(ris_df: pd.DataFrame) -> pd.DataFrame:
 # ── T01 – Location Dimension ──────────────────────────────────────
 def build_dim_location(ris_df: pd.DataFrame) -> pd.DataFrame:
     dept_map = {
-        "MAIN":     ("Main Site",     "Cambridge University Hospitals"),
-        "NORTH":    ("North Campus",  "Cambridge University Hospitals"),
-        "SOUTH":    ("South Campus",  "Cambridge University Hospitals"),
-        "WEST":     ("West Outreach", "Cambridge University Hospitals"),
-        "EASTWARD": ("East Ward",     "Cambridge University Hospitals"),
+        "MAIN":     ("ESH",     "East Surrey Hospitals"),
+        "CR":    ("CR",  "Crawley Hospitals"),
+        "HR":    ("HR",  "Horsham Hospitals"),
+        "CT":     ("CT", "Caterham Hospitals"),
+        "RH": ("RH",     "Redhill CDC"),
     }
     unique = ris_df["site_code"].dropna().unique()
     rows = []
@@ -126,7 +126,7 @@ def build_dim_location(ris_df: pd.DataFrame) -> pd.DataFrame:
             "site_code":    site,
             "department":   dept,
             "trust":        trust,
-            "region":       "East of England",
+            "region":       "Surrey and Surrey ",
         })
     df = pd.DataFrame(rows).drop_duplicates(subset=["location_key"])
     log.info(f"  Dim_Location:    {len(df):,} rows")
