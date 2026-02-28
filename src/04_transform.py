@@ -67,15 +67,15 @@ def build_dim_date(dates: pd.Series) -> pd.DataFrame:
 # ── T01 – Modality Dimension ──────────────────────────────────────
 def build_dim_modality(ris_df: pd.DataFrame) -> pd.DataFrame:
     modality_groups = {
-        "X-Ray":          "Plain Film",
-        "CT Scan":        "Cross-Sectional",
-        "MRI":            "Cross-Sectional",
-        "Ultrasound":     "Ultrasound",
-        "Nuclear Medicine":"Nuclear",
-        "Fluoroscopy":    "Interventional",
-        "Bone Density":   "Plain Film",
-        "Mammography":    "Plain Film",
-        "UNKNOWN":        "Unclassified",
+        "X-Ray":          "X-Ray",
+        "CT Scan":        "CT",
+        "MRI":            "MRI",
+        "Ultrasound":     "US",
+        "Nuclear Medicine":"NM",
+        "Fluoroscopy":    "Fluoro",
+        "Bone Density":   "Dxa",
+        "Mammography":    "Mammo",
+        "Interventiona":   "IR",
     }
     unique = ris_df["modality_standard"].dropna().unique()
     rows = []
@@ -111,7 +111,7 @@ def build_dim_radiologist(ris_df: pd.DataFrame) -> pd.DataFrame:
 # ── T01 – Location Dimension ──────────────────────────────────────
 def build_dim_location(ris_df: pd.DataFrame) -> pd.DataFrame:
     dept_map = {
-        "MAIN":     ("ESH",     "East Surrey Hospitals"),
+        "ESH":     ("ESH",     "East Surrey Hospitals"),
         "CR":    ("CR",  "Crawley Hospitals"),
         "HR":    ("HR",  "Horsham Hospitals"),
         "CT":     ("CT", "Caterham Hospitals"),
@@ -126,7 +126,7 @@ def build_dim_location(ris_df: pd.DataFrame) -> pd.DataFrame:
             "site_code":    site,
             "department":   dept,
             "trust":        trust,
-            "region":       "Surrey and Surrey ",
+            "region":       "East Surrey",
         })
     df = pd.DataFrame(rows).drop_duplicates(subset=["location_key"])
     log.info(f"  Dim_Location:    {len(df):,} rows")

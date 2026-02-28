@@ -67,15 +67,15 @@ def build_dim_date(dates: pd.Series) -> pd.DataFrame:
 # ── T01 – Modality Dimension ──────────────────────────────────────
 def build_dim_modality(ris_df: pd.DataFrame) -> pd.DataFrame:
     modality_groups = {
-        "X-Ray":          "Plain Film",
-        "CT Scan":        "Cross-Sectional",
-        "MRI":            "Cross-Sectional",
-        "Ultrasound":     "Ultrasound",
-        "Nuclear Medicine":"Nuclear",
-        "Fluoroscopy":    "Interventional",
-        "Bone Density":   "Plain Film",
-        "Mammography":    "Plain Film",
-        "UNKNOWN":        "Unclassified",
+        "X-Ray":          "X-Ray",
+        "CT Scan":        "CT",
+        "MRI":            "MRI",
+        "Ultrasound":     "US",
+        "Nuclear Medicine":"NM",
+        "Fluoroscopy":    "Fluoro",
+        "Bone Density":   "Dxa",
+        "Mammography":    "Mammo",
+        "Interventional": "IR",
     }
     unique = ris_df["modality_standard"].dropna().unique()
     rows = []
@@ -111,11 +111,11 @@ def build_dim_radiologist(ris_df: pd.DataFrame) -> pd.DataFrame:
 # ── T01 – Location Dimension ──────────────────────────────────────
 def build_dim_location(ris_df: pd.DataFrame) -> pd.DataFrame:
     dept_map = {
-        "MAIN":     ("Main Site",     "Cambridge University Hospitals"),
-        "NORTH":    ("North Campus",  "Cambridge University Hospitals"),
-        "SOUTH":    ("South Campus",  "Cambridge University Hospitals"),
-        "WEST":     ("West Outreach", "Cambridge University Hospitals"),
-        "EASTWARD": ("East Ward",     "Cambridge University Hospitals"),
+        "ESH":     ("ESH",     "East Surrey Hospitals"),
+        "Crawley":    ("CR",  "Crawley Hospitals"),
+        "Horsham":    ("HR",  "Horsham Hospitals"),
+        "Caterham":     ("CT", "Caterham Hospitals"),
+        "Redhill CDC": ("RH",     "Redhill CDC"),
     }
     unique = ris_df["site_code"].dropna().unique()
     rows = []
@@ -126,7 +126,7 @@ def build_dim_location(ris_df: pd.DataFrame) -> pd.DataFrame:
             "site_code":    site,
             "department":   dept,
             "trust":        trust,
-            "region":       "East of England",
+            "region":       "East Surrey ",
         })
     df = pd.DataFrame(rows).drop_duplicates(subset=["location_key"])
     log.info(f"  Dim_Location:    {len(df):,} rows")
